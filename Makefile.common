@@ -40,6 +40,12 @@ MODULES += \
 	po \
 	doc
 
+ifdef USE_LISPBM
+MODULES += common/lispbm
+INCLUDES += -I$(srcdir)/common/lispbm/include
+INCLUDES += -I$(srcdir)/common/lispbm/platform/scummvm/include
+endif
+
 ifdef USE_LUA
 MODULES += common/lua
 endif

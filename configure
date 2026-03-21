@@ -206,6 +206,7 @@ _verbose_build=no
 _werror_build=auto
 _text_console=no
 _mt32emu=yes
+_lispbm=yes
 _lua=yes
 _mfc=yes
 _build_scalers=yes
@@ -345,6 +346,7 @@ add_component imgui "Dear ImGui based debugger" "_imgui" "USE_IMGUI"
 add_component indeo3 "Indeo 3" "_indeo3" "USE_INDEO3"
 add_component indeo45 "Indeo 4&5" "_indeo45" "USE_INDEO45"
 add_component jyv1 "JYV1" "_jyv1" "USE_JYV1"
+add_component lispbm "LispBM" "_lispbm" "USE_LISPBM"
 add_component lua "Lua" "_lua" "USE_LUA"
 add_component mfc "MFC" "_mfc" "USE_MFC"
 add_component vpx "libvpx" "_vpx" "USE_VPX"
@@ -1020,6 +1022,7 @@ Optional Features:
   --disable-mt32emu        don't enable the integrated MT-32 emulator
   --disable-seq-midi       don't enable OSS MIDI sequencer
   --disable-timidity       don't enable TiMidity
+  --disable-lispbm         don't enable LispBM support
   --disable-lua            don't enable Lua support
   --disable-nuked-opl      don't build Nuked OPL driver
   --disable-16bit          don't enable 16bit color support
@@ -1399,6 +1402,8 @@ for ac_option in $@; do
 	--default-dynamic)           _plugins_default=dynamic;;
 	--enable-mt32emu)            _mt32emu=yes            ;;
 	--disable-mt32emu)           _mt32emu=no             ;;
+	--enable-lispbm)             _lispbm=yes             ;;
+	--disable-lispbm)            _lispbm=no              ;;
 	--enable-lua)                _lua=yes                ;;
 	--disable-lua)               _lua=no                 ;;
 	--enable-nuked-opl)          _nuked_opl=yes          ;;
@@ -7600,6 +7605,10 @@ fi
 
 if test "$_mt32emu" = yes ; then
 	echo_n ", MT-32 emulator"
+fi
+
+if test "$_lispbm" = yes ; then
+	echo_n ", LispBM"
 fi
 
 if test "$_lua" = yes ; then
