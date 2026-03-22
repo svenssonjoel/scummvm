@@ -130,13 +130,11 @@ void EoBCoreEngine::placeMonster(EoBMonsterInPlay *m, uint16 block, int dir) {
 		checkSceneUpdateNeed(m->block);
 		if (_levelBlockProperties[m->block].flags & 7) {
 			_levelBlockProperties[m->block].flags--;
-			if (_flags.gameID == GI_EOB2)
-				runLevelScript(m->block, 0x400);
+			runLevelScript(m->block, 0x400);
 		}
 		m->block = block;
 		_levelBlockProperties[block].flags++;
-		if (_flags.gameID == GI_EOB2)
-			runLevelScript(m->block, 0x200);
+		runLevelScript(m->block, 0x200);
 	}
 
 	if (dir != -1) {

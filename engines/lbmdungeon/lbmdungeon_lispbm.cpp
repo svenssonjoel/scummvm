@@ -16,7 +16,6 @@ extern "C" {
 #include "extensions/lbm_dyn_lib.h"
 }
 
-/* Match WASM platform sizes */
 #define HEAP_SIZE              (1 << 14)   /* 16384 cons cells */
 #define GC_STACK_SIZE          256
 #define PRINT_STACK_SIZE       256
@@ -51,10 +50,9 @@ void lbmdungeon_lispbm_send_event(int block, int flags) {
     f_i(&fv, (lbm_int)block);
     f_i(&fv, (lbm_int)flags);
     lbm_finish_flatten(&fv);
-    if (!lbm_event(&fv))
+    if (!lbm_event(&fv)) {
       lbm_free(fv.buf);
-    else
-      lbm_process_events();
+    }
   }
 }
 
@@ -168,7 +166,8 @@ bool lbmdungeon_lispbm_init(void) {
 }
 
 void lbmdungeon_lispbm_step(void) {
-  lbm_eval_step();
+  for (int i = 0; i < 500; i++)
+    lbm_eval_step();
 }
 
 void lbmdungeon_lispbm_eval(const char *source) {

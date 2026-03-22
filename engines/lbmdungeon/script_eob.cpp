@@ -166,6 +166,8 @@ void EoBInfProcessor::loadData(const uint8 *data, uint32 dataSize) {
 	_scriptSize = dataSize;
 	_scriptData = new int8[_scriptSize];
 	memcpy(_scriptData, data, _scriptSize);
+	debugC(1, kDebugLevelScript, "INF: loaded %u bytes of script data", dataSize);
+	warning("lbmdungeon: INF script size: %u bytes", dataSize);
 }
 
 void EoBInfProcessor::run(int func, int flags) {
