@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
-#include "kyra/script/script_eob.h"
+#include "lbmdungeon/eobcommon.h"
+#include "lbmdungeon/script_eob.h"
 #include "kyra/resource/resource.h"
 #include "kyra/engine/timer.h"
 
@@ -1276,4 +1276,4 @@ void EoBCoreEngine::setBlockMonsterDirection(int block, int dir) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

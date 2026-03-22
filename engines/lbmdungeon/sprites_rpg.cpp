@@ -19,9 +19,9 @@
  *
  */
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
-#include "kyra/engine/kyra_rpg.h"
+#include "lbmdungeon/kyra_rpg.h"
 
 namespace Kyra {
 

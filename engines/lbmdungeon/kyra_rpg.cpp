@@ -19,9 +19,9 @@
  *
  */
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
-#include "kyra/engine/kyra_rpg.h"
+#include "lbmdungeon/kyra_rpg.h"
 #include "kyra/sound/sound.h"
 
 #include "backends/keymapper/keymap.h"
@@ -267,7 +267,7 @@ void KyraRpgEngine::drawDialogueButtons() {
 			screen()->set16bitShadingLevel(4);
 			gui_drawBox(x, (_dialogueButtonYoffs + _dialogueButtonPosY[i]), _dialogueButtonWidth, guiSettings()->buttons.height, guiSettings()->colors.frame1, guiSettings()->colors.frame2, guiSettings()->colors.fill);
 			screen()->set16bitShadingLevel(0);
-#if defined(ENABLE_EOB)
+#if defined(ENABLE_LBMDUNGEON)
 			if (guiSettings()->buttons.labelShadow && _flags.gameID != GI_LOL) {
 				((Screen_EoB*)screen())->printShadedText(_dialogueButtonString[i], x + (_dialogueButtonWidth >> 1) - (screen()->getTextWidth(_dialogueButtonString[i])) / 2,
 					(_dialogueButtonYoffs + _dialogueButtonPosY[i]) + yOffset, _dialogueHighlightedButton == i ? _dialogueButtonLabelColor1 : _dialogueButtonLabelColor2, 0, guiSettings()->colors.guiColorBlack);
@@ -275,7 +275,7 @@ void KyraRpgEngine::drawDialogueButtons() {
 #endif
 				screen()->printText(_dialogueButtonString[i], x + (_dialogueButtonWidth >> 1) - (screen()->getTextWidth(_dialogueButtonString[i])) / 2,
 					(_dialogueButtonYoffs + _dialogueButtonPosY[i]) + yOffset, _dialogueHighlightedButton == i ? _dialogueButtonLabelColor1 : _dialogueButtonLabelColor2, 0);
-#if defined(ENABLE_EOB)
+#if defined(ENABLE_LBMDUNGEON)
 			}
 #endif
 		}
@@ -432,4 +432,4 @@ void KyraRpgEngine::snd_updateEnvironmentalSfx(int soundId) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB || ENABLE_LOL
+#endif // ENABLE_LBMDUNGEON || ENABLE_LOL

@@ -19,16 +19,25 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eob.h"
-#include "kyra/gui/gui_eob_segacd.h"
-#include "kyra/graphics/screen_eob_segacd.h"
+#include "lbmdungeon/eob.h"
+#include "lbmdungeon/lbmdungeon_lispbm.h"
+
+namespace Kyra {
+static EoBEngine *s_lbm_engine = nullptr;
+static void lbm_print_message_trampoline(const char *msg) {
+  if (s_lbm_engine)
+    s_lbm_engine->lbmPrintMessage(msg);
+}
+} // namespace Kyra
+#include "lbmdungeon/gui_eob_segacd.h"
+#include "lbmdungeon/screen_eob_segacd.h"
 #include "kyra/resource/resource.h"
-#include "kyra/resource/resource_segacd.h"
-#include "kyra/sequence/seqplayer_eob_segacd.h"
+#include "lbmdungeon/resource_segacd.h"
+#include "lbmdungeon/seqplayer_eob_segacd.h"
 #include "kyra/sound/sound.h"
-#include "kyra/text/text_eob_segacd.h"
+#include "lbmdungeon/text_eob_segacd.h"
 
 #include "common/system.h"
 
@@ -99,10 +108,20 @@ EoBEngine::~EoBEngine() {
 	delete _sres;
 }
 
+void EoBEngine::lbmPrintMessage(const char *msg) {
+  if (_txt)
+    _txt->printMessage(msg);
+}
+
 Common::Error EoBEngine::init() {
+	lbmdungeon_lispbm_init();
+
 	Common::Error err = EoBCoreEngine::init();
 	if (err.getCode() != Common::kNoError)
 		return err;
+
+	s_lbm_engine = this;
+	lbmdungeon_lispbm_set_print_fn(lbm_print_message_trampoline);
 
 	initStaticResource();
 
@@ -1289,4 +1308,4 @@ const KyraRpgGUISettings *EoBEngine::guiSettings() const {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

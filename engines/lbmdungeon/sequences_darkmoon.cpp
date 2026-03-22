@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/darkmoon.h"
-#include "kyra/graphics/screen_eob.h"
+#include "lbmdungeon/darkmoon.h"
+#include "lbmdungeon/screen_eob.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound.h"
 
@@ -2022,4 +2022,4 @@ void DarkMoonEngine::seq_dranDragonTransformation() {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

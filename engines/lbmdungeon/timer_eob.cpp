@@ -19,12 +19,12 @@
  *
  */
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
 #include "kyra/engine/timer.h"
 
 #include "common/system.h"
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 namespace Kyra {
 
@@ -420,4 +420,4 @@ void EoBCoreEngine::timerUpdateMonsterIdleAnim(int timerNum) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

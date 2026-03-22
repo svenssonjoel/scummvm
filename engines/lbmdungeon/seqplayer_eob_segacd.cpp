@@ -19,14 +19,14 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eob.h"
-#include "kyra/graphics/screen_eob.h"
-#include "kyra/graphics/screen_eob_segacd.h"
+#include "lbmdungeon/eob.h"
+#include "lbmdungeon/screen_eob.h"
+#include "lbmdungeon/screen_eob_segacd.h"
 #include "kyra/resource/resource.h"
-#include "kyra/resource/resource_segacd.h"
-#include "kyra/sequence/seqplayer_eob_segacd.h"
+#include "lbmdungeon/resource_segacd.h"
+#include "lbmdungeon/seqplayer_eob_segacd.h"
 #include "common/system.h"
 
 namespace Kyra {
@@ -621,4 +621,4 @@ void SegaSequencePlayer::s_playSoundEffect(const uint8 *pos) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

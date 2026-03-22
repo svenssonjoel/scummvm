@@ -20,16 +20,16 @@
  */
 
 
-#if !defined(ENABLE_EOB)
+#if !defined(ENABLE_LBMDUNGEON)
 #include "kyra/graphics/screen.h"
 #endif
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
 #include "kyra/resource/resource.h"
 #include "kyra/engine/util.h"
-#include "kyra/graphics/screen_eob_segacd.h"
+#include "lbmdungeon/screen_eob_segacd.h"
 
 #include "common/system.h"
 #include "common/memstream.h"
@@ -2321,4 +2321,4 @@ void ChineseTwoByteFontEoB::drawChar(uint16 c, byte *dst, int pitch, int bpp) co
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

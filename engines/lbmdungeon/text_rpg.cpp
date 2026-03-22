@@ -19,9 +19,9 @@
  *
  */
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
-#include "kyra/engine/kyra_rpg.h"
+#include "lbmdungeon/kyra_rpg.h"
 #include "kyra/engine/timer.h"
 
 #include "common/system.h"
@@ -690,7 +690,7 @@ void TextDisplayer_rpg::textPageBreak() {
 		_screen->set16bitShadingLevel(4);
 		_vm->gui_drawBox(x, y, w, _vm->guiSettings()->buttons.height, _vm->guiSettings()->colors.frame1, _vm->guiSettings()->colors.frame2, _vm->guiSettings()->colors.fill);
 		_screen->set16bitShadingLevel(0);
-#if defined(ENABLE_EOB)
+#if defined(ENABLE_LBMDUNGEON)
 		if (_vm->guiSettings()->buttons.labelShadow && _vm->game() != GI_LOL)
 			((Screen_EoB*)screen())->printShadedText(_pageBreakString.c_str(), x + (w >> 1) - (_vm->screen()->getTextWidth(_pageBreakString.c_str()) >> 1), y + _vm->guiSettings()->buttons.txtOffsY, _vm->_dialogueButtonLabelColor1, 0, _vm->guiSettings()->colors.guiColorBlack);
 		else
@@ -874,4 +874,4 @@ uint8 TextDisplayer_rpg::remapColor(int sd, uint8 color) const {
 
 } // End of namespace Kyra
 
-#endif // (ENABLE_EOB || ENABLE_LOL)
+#endif // (ENABLE_LBMDUNGEON || ENABLE_LOL)

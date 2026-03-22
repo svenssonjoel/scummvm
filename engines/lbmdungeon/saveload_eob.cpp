@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/resource/resource.h"
-#include "kyra/script/script_eob.h"
+#include "lbmdungeon/script_eob.h"
 
 #include "common/system.h"
 #include "common/savefile.h"
@@ -1477,4 +1477,4 @@ void EoBCoreEngine::releaseWallOfForceTempData(LevelTempData *tmp) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

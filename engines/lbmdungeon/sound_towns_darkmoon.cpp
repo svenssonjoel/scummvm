@@ -19,7 +19,7 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/sound/sound_intern.h"
 #include "kyra/resource/resource.h"

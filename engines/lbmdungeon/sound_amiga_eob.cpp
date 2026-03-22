@@ -19,11 +19,11 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/sound/sound_intern.h"
 #include "kyra/resource/resource.h"
-#include "kyra/sound/drivers/audiomaster2.h"
+#include "lbmdungeon/audiomaster2.h"
 
 #include "common/config-manager.h"
 #include "common/memstream.h"

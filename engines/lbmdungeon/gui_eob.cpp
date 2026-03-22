@@ -19,15 +19,15 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
-#include "kyra/gui/gui_eob.h"
-#include "kyra/script/script_eob.h"
-#include "kyra/text/text_rpg.h"
+#include "lbmdungeon/eobcommon.h"
+#include "lbmdungeon/gui_eob.h"
+#include "lbmdungeon/script_eob.h"
+#include "lbmdungeon/text_rpg.h"
 #include "kyra/engine/timer.h"
 #include "kyra/engine/util.h"
-#include "kyra/graphics/screen_eob_segacd.h"
+#include "lbmdungeon/screen_eob_segacd.h"
 
 #include "backends/keymapper/keymapper.h"
 #include "common/system.h"
@@ -4973,4 +4973,4 @@ const uint8 GUI_EoB::_highlightColorTableSegaCD[] = { 0x3D, 0x3D, 0x3D, 0x3E, 0x
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

@@ -19,7 +19,7 @@
  *
  */
 
-#include "kyra/engine/eob.h"
+#include "lbmdungeon/eob.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound_intern.h"
 
@@ -27,7 +27,7 @@
 
 namespace Kyra {
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 const DarkMoonAnimCommand *StaticResource::loadEoB2SeqData(int id, int &entries) {
 	return (const DarkMoonAnimCommand *)getData(id, kEoB2SequenceData, entries);
 }
@@ -2082,6 +2082,6 @@ const uint8 DarkMoonEngine::_monsterAcHitChanceTbl2[] = {
 	1, 1, 2, 1
 };
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
 
 } // End of namespace Kyra

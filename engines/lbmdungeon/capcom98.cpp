@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/kyra_v1.h"
-#include "kyra/sound/drivers/capcom98.h"
+#include "lbmdungeon/capcom98.h"
 #include "audio/mixer.h"
 #include "audio/softsynth/fmtowns_pc98/pc98_audio.h"
 #include "common/debug.h"

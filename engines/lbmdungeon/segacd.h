@@ -19,7 +19,7 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #ifndef KYRA_SOUND_SEGACD_H
 #define KYRA_SOUND_SEGACD_H

@@ -1,0 +1,26 @@
+
+(define counter 0)
+
+;; message window newline is \r
+(define periodic-print
+  (lambda () {
+    (print "ping " counter)
+    (yield 100000)
+    (setq counter (+ counter 1))
+    (periodic-print)
+    }))
+
+
+(spawn periodic-print)
+
+
+(define event-loop (lambda () {
+  (dbg-print "Waiting for message\r");
+  (recv                                                                                  
+   (((? x) (print x))))
+  (dbg-print "Processed one message\r");
+  (event-loop)
+  }))
+
+(event-register-handler (spawn event-loop))
+

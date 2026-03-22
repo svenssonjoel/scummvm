@@ -19,7 +19,7 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #ifndef KYRA_SEQPLAYER_SEGACD_H
 #define KYRA_SEQPLAYER_SEGACD_H
@@ -168,4 +168,4 @@ private:
 } // End of namespace Kyra
 
 #endif
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

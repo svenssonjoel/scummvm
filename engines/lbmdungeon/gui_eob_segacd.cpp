@@ -20,14 +20,14 @@
  */
 
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eob.h"
-#include "kyra/graphics/screen_eob.h"
-#include "kyra/graphics/screen_eob_segacd.h"
-#include "kyra/gui/gui_eob_segacd.h"
+#include "lbmdungeon/eob.h"
+#include "lbmdungeon/screen_eob.h"
+#include "lbmdungeon/screen_eob_segacd.h"
+#include "lbmdungeon/gui_eob_segacd.h"
 #include "kyra/resource/resource.h"
-#include "kyra/resource/resource_segacd.h"
+#include "lbmdungeon/resource_segacd.h"
 
 #include "common/system.h"
 
@@ -1093,4 +1093,4 @@ const GUI_EoB_SegaCD::MenuButtonTiles GUI_EoB_SegaCD::_menuButtonTiles[40] = {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

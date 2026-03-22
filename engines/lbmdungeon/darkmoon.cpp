@@ -19,9 +19,9 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/darkmoon.h"
+#include "lbmdungeon/darkmoon.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound.h"
 
@@ -802,4 +802,4 @@ const KyraRpgGUISettings *DarkMoonEngine::guiSettings() const {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

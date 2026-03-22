@@ -19,9 +19,9 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound.h"
 
@@ -861,4 +861,4 @@ void EoBCoreEngine::reloadWeaponSlotEnhanced(int charIndex, int slotIndex) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

@@ -19,11 +19,12 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
-#include "kyra/graphics/screen_eob.h"
-#include "kyra/script/script_eob.h"
+#include "lbmdungeon/eobcommon.h"
+#include "lbmdungeon/screen_eob.h"
+#include "lbmdungeon/lbmdungeon_lispbm.h"
+#include "lbmdungeon/script_eob.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound.h"
 
@@ -33,6 +34,7 @@ namespace Kyra {
 
 void EoBCoreEngine::runLevelScript(int block, int flags) {
 	_inf->run(block, flags);
+	lbmdungeon_lispbm_send_event(block, flags);
 }
 
 void EoBCoreEngine::setScriptFlags(uint32 flags) {
@@ -1655,4 +1657,4 @@ const uint8 EoBInfProcessor::_segaCDColorMap[16] = {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

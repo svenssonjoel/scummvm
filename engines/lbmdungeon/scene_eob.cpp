@@ -19,11 +19,11 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
 #include "kyra/resource/resource.h"
-#include "kyra/script/script_eob.h"
+#include "lbmdungeon/script_eob.h"
 #include "kyra/engine/timer.h"
 #include "kyra/sound/sound.h"
 
@@ -934,4 +934,4 @@ void EoBCoreEngine::closeDoor(int block) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

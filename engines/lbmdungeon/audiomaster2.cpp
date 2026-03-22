@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/kyra_v1.h"
-#include "kyra/sound/drivers/audiomaster2.h"
+#include "lbmdungeon/audiomaster2.h"
 
 #include "audio/mods/paula.h"
 

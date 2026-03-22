@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
-#include "kyra/graphics/screen_eob_segacd.h"
+#include "lbmdungeon/eobcommon.h"
+#include "lbmdungeon/screen_eob_segacd.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound_intern.h"
 
@@ -2722,4 +2722,4 @@ bool EoBCoreEngine::startPartyTransfer() {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

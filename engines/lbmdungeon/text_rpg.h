@@ -19,7 +19,7 @@
  *
  */
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
 #ifndef KYRA_TEXT_EOB_H
 #define KYRA_TEXT_EOB_H
@@ -153,4 +153,4 @@ private:
 
 #endif
 
-#endif // ENABLE_EOB || ENABLE_LOL
+#endif // ENABLE_LBMDUNGEON || ENABLE_LOL

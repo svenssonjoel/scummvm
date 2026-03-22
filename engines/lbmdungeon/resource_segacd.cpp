@@ -19,11 +19,11 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/resource/resource.h"
 #include "kyra/resource/resource_intern.h"
-#include "kyra/resource/resource_segacd.h"
+#include "lbmdungeon/resource_segacd.h"
 #include "common/substream.h"
 
 namespace Kyra {
@@ -135,4 +135,4 @@ uint8 *SegaCDResource::resData(int resID, uint32 *resLen) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

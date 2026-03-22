@@ -19,12 +19,13 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #ifndef KYRA_EOB1_H
 #define KYRA_EOB1_H
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
+#include "lbmdungeon/text_eob_segacd.h"
 
 namespace Kyra {
 
@@ -42,6 +43,8 @@ friend class SegaSequencePlayer;
 public:
 	EoBEngine(OSystem *system, const GameFlags &flags);
 	~EoBEngine() override;
+
+	void lbmPrintMessage(const char *msg);
 
 private:
 	// Init
@@ -262,4 +265,4 @@ private:
 
 #endif
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

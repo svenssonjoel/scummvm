@@ -19,14 +19,14 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #ifndef KYRA_GUI_EOB_SEGACD_H
 #define KYRA_GUI_EOB_SEGACD_H
 
-#include "kyra/gui/gui_eob.h"
+#include "lbmdungeon/gui_eob.h"
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 namespace Kyra {
 
@@ -73,8 +73,8 @@ private:
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
 
 #endif
 
-#endif // ENABLE_EOB || ENABLE_LOL
+#endif // ENABLE_LBMDUNGEON || ENABLE_LOL

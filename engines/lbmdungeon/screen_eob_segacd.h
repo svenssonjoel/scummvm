@@ -22,12 +22,12 @@
 #ifndef KYRA_SCREEN_EOB_SEGACD_H
 #define KYRA_SCREEN_EOB_SEGACD_H
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #define SEGA_PERFORMANCE		true
 #define SEGA_USE_MEMPOOL		true
 
-#include "kyra/graphics/screen_eob.h"
+#include "lbmdungeon/screen_eob.h"
 
 #if SEGA_USE_MEMPOOL
 #include "common/memorypool.h"
@@ -207,6 +207,6 @@ private:
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
 
 #endif

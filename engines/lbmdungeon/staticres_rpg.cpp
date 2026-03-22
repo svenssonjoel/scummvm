@@ -24,7 +24,7 @@
 
 namespace Kyra {
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 const uint32 *StaticResource::loadRawDataBe32(int id, int &entries) {
 	return (const uint32 *)getData(id, kRawDataBe32, entries);
 }
@@ -78,6 +78,6 @@ void KyraRpgEngine::initStaticResource() {
 	_moreStrings = _staticres->loadStrings(kRpgCommonMoreStrings, temp);
 }
 
-#endif // (ENABLE_EOB || ENABLE_LOL)
+#endif // (ENABLE_LBMDUNGEON || ENABLE_LOL)
 
 } // End of namespace Kyra

@@ -19,9 +19,9 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
 #include "kyra/resource/resource.h"
 #include "common/system.h"
 
@@ -1427,4 +1427,4 @@ bool EoBCoreEngine::spellCallback_end_monster_fleshToStone(void *obj) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

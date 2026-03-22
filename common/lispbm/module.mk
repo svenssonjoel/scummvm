@@ -6,6 +6,7 @@ MODULE_OBJS := \
 	src/env.o \
 	src/eval_cps.o \
 	src/extensions.o \
+	src/extensions/lbm_dyn_lib.o \
 	src/fundamental.o \
 	src/heap.o \
 	src/lbm_channel.o \

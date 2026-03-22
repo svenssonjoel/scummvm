@@ -1,8 +1,10 @@
 #include "lbmdungeon/detection.h"
-#include "kyra/engine/eob.h"
+#include "lbmdungeon/eob.h"
+#include "lbmdungeon/eobcommon.h"
 
 #include "common/config-manager.h"
 #include "common/system.h"
+#include "backends/keymapper/keymapper.h"
 #include "engines/advancedDetector.h"
 #include "base/plugins.h"
 
@@ -10,6 +12,10 @@ class LbmDungeonMetaEngine : public AdvancedMetaEngine<LbmDungeonGameDescription
 public:
 	const char *getName() const override {
 		return "lbmdungeon";
+	}
+
+	Common::KeymapArray initKeymaps(const char *target) const override {
+		return Kyra::EoBCoreEngine::initKeymaps("eob");
 	}
 
 	Common::Error createInstance(OSystem *syst, Engine **engine, const LbmDungeonGameDescription *gd) const override {

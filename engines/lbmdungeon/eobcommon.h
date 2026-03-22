@@ -22,11 +22,11 @@
 #ifndef KYRA_EOBCOMMON_H
 #define KYRA_EOBCOMMON_H
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
-#include "kyra/engine/kyra_rpg.h"
-#endif // (ENABLE_EOB || ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
+#include "lbmdungeon/kyra_rpg.h"
+#endif // (ENABLE_LBMDUNGEON || ENABLE_LOL)
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 namespace Common {
 class Keymap;
@@ -1307,6 +1307,6 @@ private:
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
 
 #endif

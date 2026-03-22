@@ -19,10 +19,10 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/kyra_v1.h"
-#include "kyra/sound/drivers/segacd.h"
+#include "lbmdungeon/segacd.h"
 
 #include "audio/softsynth/fmtowns_pc98/sega_audio.h"
 

@@ -19,14 +19,14 @@
  *
  */
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
 #ifndef KYRA_GUI_EOB_H
 #define KYRA_GUI_EOB_H
 
 #include "kyra/gui/gui.h"
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 namespace Kyra {
 
@@ -201,8 +201,8 @@ private:
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
 
 #endif
 
-#endif // ENABLE_EOB || ENABLE_LOL
+#endif // ENABLE_LBMDUNGEON || ENABLE_LOL

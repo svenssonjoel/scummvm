@@ -22,11 +22,12 @@
 #ifndef KYRA_RPG_H
 #define KYRA_RPG_H
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
 #include "kyra/kyra_v1.h"
-#include "kyra/graphics/screen_eob.h"
-#include "kyra/gui/gui_eob.h"
+#include "lbmdungeon/screen_eob.h"
+#include "lbmdungeon/gui_eob.h"
+#include "lbmdungeon/text_rpg.h"
 #include "kyra/text/text_lol.h"
 
 #include "common/keyboard.h"
@@ -554,6 +555,6 @@ protected:
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB || ENABLE_LOL
+#endif // ENABLE_LBMDUNGEON || ENABLE_LOL
 
 #endif

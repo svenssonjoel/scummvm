@@ -20,12 +20,12 @@
  */
 
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "common/system.h"
 #include "kyra/resource/resource.h"
-#include "kyra/graphics/screen_eob.h"
-#include "kyra/graphics/screen_eob_segacd.h"
+#include "lbmdungeon/screen_eob.h"
+#include "lbmdungeon/screen_eob_segacd.h"
 
 namespace Kyra {
 
@@ -1273,4 +1273,4 @@ void ScrollManager::fastForward() {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

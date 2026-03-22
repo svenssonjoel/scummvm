@@ -19,9 +19,9 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/sound/drivers/segacd.h"
+#include "lbmdungeon/segacd.h"
 #include "kyra/sound/sound_intern.h"
 #include "kyra/resource/resource.h"
 #include "common/config-manager.h"
@@ -173,4 +173,4 @@ const uint8 SoundSegaCD_EoB::_fmTrackMap[140] = {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

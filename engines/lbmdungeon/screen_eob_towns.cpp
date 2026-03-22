@@ -20,7 +20,7 @@
  */
 
 
- #ifdef ENABLE_EOB
+ #ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/resource/resource.h"
 #include "graphics/sjis.h"
@@ -170,4 +170,4 @@ void SJISFont12x12::drawChar(uint16 c, byte *dst, int pitch, int) const {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

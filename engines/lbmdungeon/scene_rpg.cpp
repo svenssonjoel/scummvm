@@ -19,9 +19,9 @@
  *
  */
 
-#if defined(ENABLE_EOB) || defined(ENABLE_LOL)
+#if defined(ENABLE_LBMDUNGEON) || defined(ENABLE_LOL)
 
-#include "kyra/engine/kyra_rpg.h"
+#include "lbmdungeon/kyra_rpg.h"
 #include "kyra/resource/resource.h"
 #include "kyra/engine/timer.h"
 #include "kyra/sound/sound.h"
@@ -730,4 +730,4 @@ bool KyraRpgEngine::isSpecialDoor(int block) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB || ENABLE_LOL
+#endif // ENABLE_LBMDUNGEON || ENABLE_LOL

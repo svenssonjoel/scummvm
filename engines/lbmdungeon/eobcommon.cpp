@@ -19,13 +19,14 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
-#include "kyra/engine/kyra_rpg.h"
+#include "lbmdungeon/kyra_rpg.h"
+#include "lbmdungeon/lbmdungeon_lispbm.h"
 #include "kyra/resource/resource.h"
 #include "kyra/sound/sound_intern.h"
 #include "kyra/sound/sound_pc_v1.h"
-#include "kyra/script/script_eob.h"
+#include "lbmdungeon/script_eob.h"
 #include "kyra/engine/timer.h"
 #include "kyra/gui/debugger.h"
 
@@ -753,6 +754,8 @@ void EoBCoreEngine::runLoop() {
 	_screen->setScreenDim(7);
 	_runFlag = true;
 
+	lbmdungeon_lispbm_load_file("engines/lbmdungeon/scripts/test1.lbm");
+
 	while (!shouldQuit() && _runFlag) {
 		uint32 frameEnd = _system->getMillis() + 8;	
 		checkPartyStatus(true);
@@ -781,6 +784,7 @@ void EoBCoreEngine::runLoop() {
 		snd_updateLevelScore();
 		snd_updateEnvironmentalSfx(0);
 		turnUndeadAuto();
+		lbmdungeon_lispbm_step();
 		delayUntil(frameEnd);
 	}
 }
@@ -2929,4 +2933,4 @@ void EoBCoreEngine::snd_fadeOut(int del) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

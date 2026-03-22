@@ -19,7 +19,7 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #ifndef KYRA_SCRIPT_EOB_H
 #define KYRA_SCRIPT_EOB_H
@@ -129,4 +129,4 @@ private:
 
 #endif
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

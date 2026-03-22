@@ -20,7 +20,7 @@
  */
 
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/resource/resource.h"
 
@@ -408,4 +408,4 @@ void AmigaDOSFont::selectMode(int mode) {
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON

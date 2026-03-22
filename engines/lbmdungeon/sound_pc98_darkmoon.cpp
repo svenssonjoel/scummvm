@@ -19,11 +19,11 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "kyra/sound/sound_intern.h"
 #include "kyra/resource/resource.h"
-#include "kyra/sound/drivers/capcom98.h"
+#include "lbmdungeon/capcom98.h"
 
 #include "common/config-manager.h"
 

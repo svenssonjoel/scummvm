@@ -22,7 +22,7 @@
 #ifndef KYRA_SCREEN_EOB_H
 #define KYRA_SCREEN_EOB_H
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #include "graphics/big5.h"
 
@@ -531,6 +531,6 @@ private:
 
 } // End of namespace Kyra
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
 
 #endif

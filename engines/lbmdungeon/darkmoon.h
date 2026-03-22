@@ -19,12 +19,12 @@
  *
  */
 
-#ifdef ENABLE_EOB
+#ifdef ENABLE_LBMDUNGEON
 
 #ifndef KYRA_EOB2_H
 #define KYRA_EOB2_H
 
-#include "kyra/engine/eobcommon.h"
+#include "lbmdungeon/eobcommon.h"
 
 namespace Kyra {
 
@@ -163,4 +163,4 @@ private:
 
 #endif
 
-#endif // ENABLE_EOB
+#endif // ENABLE_LBMDUNGEON
