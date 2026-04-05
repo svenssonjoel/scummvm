@@ -186,8 +186,7 @@ bool lbmdungeon_lispbm_init(void) {
 }
 
 void lbmdungeon_lispbm_step(void) {
-  for (int i = 0; i < 500; i++)
-    lbm_eval_step();
+    lbm_eval_step(500);
 }
 
 void lbmdungeon_lispbm_eval(const char *source) {
