@@ -44,7 +44,9 @@ public:
 	EoBEngine(OSystem *system, const GameFlags &flags);
 	~EoBEngine() override;
 
+        // This is how LispBM interacts with the EoBEngine
 	void lbmPrintMessage(const char *msg);
+	void lbmAwardXp(int16 points);
 
 private:
 	// Init

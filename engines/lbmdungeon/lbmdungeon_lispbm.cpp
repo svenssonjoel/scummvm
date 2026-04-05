@@ -1,4 +1,5 @@
 #include "lbmdungeon/lbmdungeon_lispbm.h"
+#include "lbmdungeon/eob.h"
 
 #include "common/debug.h"
 #include "common/textconsole.h"
@@ -32,6 +33,11 @@ static lbm_extension_t s_extensions[EXTENSION_STORAGE_SIZE];
 static uint32_t        s_image[IMAGE_STORAGE_WORDS];
 
 static void (*s_print_fn)(const char *msg) = nullptr;
+static Kyra::EoBEngine *s_engine = nullptr;
+
+void lbmdungeon_lispbm_set_engine(Kyra::EoBEngine *engine) {
+  s_engine = engine;
+}
 
 static lbm_string_channel_state_t s_load_tok_state;
 static lbm_char_channel_t         s_load_tok;
@@ -112,8 +118,6 @@ static bool image_write(uint32_t w, int32_t ix, bool is_const_heap) {
   return true;
 }
 
-
-
 static void ctx_done_callback(eval_context_t *ctx) {
   if (ctx->id == s_load_cid) {
     delete[] s_load_buf;
@@ -125,6 +129,21 @@ static void ctx_done_callback(eval_context_t *ctx) {
 static void critical_callback(void) {
   warning("lbmdungeon: LispBM critical error");
 }
+
+// ////////////////////////////////////////////////////////////
+// Game scripting extensions
+// 
+
+static lbm_value ext_award_xp(lbm_value *args, lbm_uint argn) {
+  if (argn < 1 || !s_engine) return lbm_enc_sym(SYM_NIL);
+  int16_t points = (int16_t)lbm_dec_as_i32(args[0]);
+  s_engine->lbmAwardXp(points);
+  return lbm_enc_sym(SYM_TRUE);
+}
+
+
+// ////////////////////////////////////////////////////////////
+
 
 bool lbmdungeon_lispbm_init(void) {
   if (!lbm_init(s_heap, HEAP_SIZE,
@@ -160,6 +179,7 @@ bool lbmdungeon_lispbm_init(void) {
   lbm_add_eval_symbols();
   lbm_add_extension("print", ext_print);
   lbm_add_extension("dbg-print", ext_dbg_print);
+  lbm_add_extension("award-xp", ext_award_xp);
 
   debug("lbmdungeon: LispBM initialized");
   return true;

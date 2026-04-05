@@ -25,12 +25,12 @@
 #include "lbmdungeon/lbmdungeon_lispbm.h"
 
 namespace Kyra {
-static EoBEngine *s_lbm_engine = nullptr;
-static void lbm_print_message_trampoline(const char *msg) {
-  if (s_lbm_engine)
-    s_lbm_engine->lbmPrintMessage(msg);
+static EoBEngine *s_eob_engine = nullptr;
+static void lbm_print_trampoline(const char *msg) {
+  if (s_eob_engine) s_eob_engine->lbmPrintMessage(msg);
 }
 } // namespace Kyra
+
 #include "lbmdungeon/gui_eob_segacd.h"
 #include "lbmdungeon/screen_eob_segacd.h"
 #include "kyra/resource/resource.h"
@@ -113,6 +113,10 @@ void EoBEngine::lbmPrintMessage(const char *msg) {
     _txt->printMessage(msg);
 }
 
+void EoBEngine::lbmAwardXp(int16 points) {
+  increasePartyExperience(points);
+}
+
 Common::Error EoBEngine::init() {
 	lbmdungeon_lispbm_init();
 
@@ -120,8 +124,9 @@ Common::Error EoBEngine::init() {
 	if (err.getCode() != Common::kNoError)
 		return err;
 
-	s_lbm_engine = this;
-	lbmdungeon_lispbm_set_print_fn(lbm_print_message_trampoline);
+	s_eob_engine = this;
+	lbmdungeon_lispbm_set_engine(this);
+	lbmdungeon_lispbm_set_print_fn(lbm_print_trampoline);
 
 	initStaticResource();
 
