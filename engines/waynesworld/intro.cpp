@@ -33,10 +33,10 @@ void WaynesWorldEngine::runIntro() {
 
 	if (continueFl)
 		continueFl = introPt2();
-	
+
 	if (continueFl)
 		continueFl = introPt3(false);
-	
+
 	if (continueFl)
 		continueFl = introPt4();
 
@@ -52,10 +52,10 @@ void WaynesWorldEngine::runIntro() {
 }
 
 bool WaynesWorldEngine::introPt1() {
-	static int16 array1[] = {179, 179, 181, 183, 186, 189, 192, 198, 208, 212, 217, 223, 234, 233, 236, 240, 241, 238, 238, 238, 225, 218, 218, 192, 164, 133, 103, 87};
-	static int16 array2[] = {97, 97, 98, 98, 97, 96, 94, 91, 88, 85, 84, 82, 81, 78, 76, 76, 75, 74, 72, 72, 71, 69, 68, 68, 67, 67, 66, 68};
-	static int16 array3[] = {80, 80, 69, 37, 0, 0, 0, 0};
-	static int16 array4[] = {67, 67, 64, 54, 41, 27, 27, 27};
+	static const int16 array1[] = {179, 179, 181, 183, 186, 189, 192, 198, 208, 212, 217, 223, 234, 233, 236, 240, 241, 238, 238, 238, 225, 218, 218, 192, 164, 133, 103, 87};
+	static const int16 array2[] = {97, 97, 98, 98, 97, 96, 94, 91, 88, 85, 84, 82, 81, 78, 76, 76, 75, 74, 72, 72, 71, 69, 68, 68, 67, 67, 66, 68};
+	static const int16 array3[] = {80, 80, 69, 37, 0, 0, 0, 0};
+	static const int16 array4[] = {67, 67, 64, 54, 41, 27, 27, 27};
 
 	GxlArchive *oa2Gxl = new GxlArchive("oa2");
 	loadPalette(oa2Gxl, "paramnt.pcx");
@@ -70,7 +70,7 @@ bool WaynesWorldEngine::introPt1() {
 		delete oa2Gxl;
 		return false;
 	}
-	
+
 	WWSurface *paramaSprite = new WWSurface(190, 112);
 	// "And" animation
 	drawImageToSurface(oa2Gxl, "parama.pcx", paramaSprite, 0, 0);
@@ -289,9 +289,9 @@ bool WaynesWorldEngine::introPt3(bool flag) {
 	}
 
 	byte newColor[3] = {0, 0, 0};
-	static byte rArr[] = { 9,  9,  9,  9, 43, 43, 53, 63, 63, 63, 63, 63, 63, 63, 45, 28,  9,  9,  9};
-	static byte gArr[] = {33, 33, 40, 47, 47, 47, 47, 47, 35, 23,  0,  0,  0,  0,  0,  0,  0, 33, 33};
-	static byte bArr[] = {29, 20, 20, 20, 20,  0,  0,  0,  0,  0,  0, 23, 37, 50, 50, 50, 50, 50, 40};
+	static const byte rArr[] = { 9,  9,  9,  9, 43, 43, 53, 63, 63, 63, 63, 63, 63, 63, 45, 28,  9,  9,  9};
+	static const byte gArr[] = {33, 33, 40, 47, 47, 47, 47, 47, 35, 23,  0,  0,  0,  0,  0,  0,  0, 33, 33};
+	static const byte bArr[] = {29, 20, 20, 20, 20,  0,  0,  0,  0,  0,  0, 23, 37, 50, 50, 50, 50, 50, 40};
 
 	for (int i = 0; i < 32; ++i) {
 		const int index = (i % 19);
@@ -323,8 +323,8 @@ bool WaynesWorldEngine::introPt3(bool flag) {
 	_sound->playSound("sv16.snd", false);
 
 	waitSeconds(1);
-	paletteFadeOut(0, 256, 4); 
-	
+	paletteFadeOut(0, 256, 4);
+
 	cleanPt3();
 
 	if (_escPressed) {
@@ -354,7 +354,7 @@ bool WaynesWorldEngine::introPt4() {
 		retVal = introPt4_playGuitar();
 
 	introPt4_cleanup();
-	
+
 	return retVal;
 }
 
@@ -367,9 +367,9 @@ void WaynesWorldEngine::introPt6() {
 	WWSurface *introPt6Surface[5] = {nullptr};
 	WWSurface *signBottomSurface = nullptr;
 	WWSurface *scrollSurface = nullptr;
-	
+
 	_escPressed = false;
-	
+
 	while (_sound->isSFXPlaying())
 		waitMillis(10);
 
@@ -379,7 +379,7 @@ void WaynesWorldEngine::introPt6() {
 	GxlArchive *oa3Gxl = new GxlArchive("oa3");
 	for (int i = 0; i < 5; ++i) {
 		introPt6Surface[i] = new WWSurface(320, 200);
-		Common::String filename = Common::String::format("sign%d.pcx",  i);
+		Common::String filename = Common::String::format("sign%d.pcx", i);
 		drawImageToSurface(oa3Gxl, filename.c_str(), introPt6Surface[i], 0, 0);
 	}
 
@@ -411,9 +411,6 @@ void WaynesWorldEngine::introPt6() {
 			scrollSurface->copyRectToSurface((Graphics::Surface)*introPt6Surface[4], 0, 0, Common::Rect(0, 200 - i, 319, 200));
 			scrollSurface->copyRectToSurface((Graphics::Surface)*signBottomSurface, 0, i, Common::Rect(0, 0, 319, 200 - i));
 			_screen->drawSurface(scrollSurface, 0, 0);
-			if (_escPressed) {
-				break;
-			}
 		}
 	}
 
@@ -435,7 +432,7 @@ void WaynesWorldEngine::sub3009A(int textId) {
 	int textColor;
 	int textType = 0;
 	Common::String filename;
-	
+
 	switch (textId) {
 	case 0:
 		filename = "oaw";
@@ -497,7 +494,7 @@ void WaynesWorldEngine::sub2FEFB(int arg_refreshBackgFl, int arg_wBodyIndex, int
 	if (arg_TextId != -1) {
 		sub3009A(arg_TextId);
 	}
-	
+
 	_screen->drawSurface(_demoPt2Surface, 0, 0);
 	waitMillis(170);
 }
@@ -508,7 +505,7 @@ void WaynesWorldEngine::introPt4_init() {
 
 	while(_sound->isSFXPlaying())
 		waitMillis(30);
-	
+
 	_musicIndex = 2;
 	changeMusic();
 
@@ -552,7 +549,7 @@ bool WaynesWorldEngine::introPt4_intro() {
 
 	while (_sound->isSFXPlaying())
 		waitMillis(30);
-	
+
 	_sound->playSound("sv25.snd", false);
 
 	for (int i = 0; i < 8; ++i) {
@@ -586,9 +583,10 @@ bool WaynesWorldEngine::introPt4_intro() {
 	if (_escPressed) {
 		return false;
 	}
-	
+
 	return true;
 }
+
 bool WaynesWorldEngine::introPt4_displayCallInTime() {
 	WWSurface *pt4Sub3Surface1 = new WWSurface(178, 21);
 	WWSurface *pt4Sub3Surface2 = new WWSurface(178, 21);
@@ -617,6 +615,7 @@ bool WaynesWorldEngine::introPt4_displayCallInTime() {
 
 	return true;
 }
+
 bool WaynesWorldEngine::introPt4_caller1() {
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < 15; ++j) {
@@ -756,6 +755,7 @@ bool WaynesWorldEngine::introPt4_caller1() {
 	}
 	return true;
 }
+
 bool WaynesWorldEngine::introPt4_caller2() {
 	for (int i = 0; i < 4; ++i) {
 		sub2FEFB(1, 0, 1, getRandom(3), getRandom(11), 2);
@@ -776,7 +776,7 @@ bool WaynesWorldEngine::introPt4_caller2() {
 		}
 		++_startOagPos;
 	}
-	
+
 	for (int i = 0; i < 4; ++i) {
 		sub2FEFB(1, 0, 1, getRandom(3), getRandom(11), 2);
 		waitSeconds(2);
@@ -856,12 +856,13 @@ bool WaynesWorldEngine::introPt4_caller2() {
 		}
 		++_startOawPos;
 	}
-	
+
 	if (_escPressed) {
 		return false;
 	}
 	return true;
 }
+
 bool WaynesWorldEngine::introPt4_caller3() {
 	for (int i = 0; i < 5; ++i) {
 		sub2FEFB(1, 0, 1, getRandom(3), getRandom(11), 2);
@@ -966,7 +967,7 @@ bool WaynesWorldEngine::introPt4_caller4() {
 		}
 	}
 	++_startOawPos;
-	
+
 	for (int j = 0; j < 2; ++j) {
 		for (int i = 0; i < 15; ++i) {
 			sub2FEFB(1, 0, 1, 0, getRandom(11), 1);
@@ -1034,7 +1035,7 @@ bool WaynesWorldEngine::introPt4_caller4() {
 				return false;
 			}
 		}
-		++_startOawPos;	
+		++_startOawPos;
 	}
 
 	for (int i = 0; i < 8; ++i) {
@@ -1064,7 +1065,7 @@ bool WaynesWorldEngine::introPt4_caller4() {
 	}
 
 	_sound->playSound("sv45.snd", true);
-	
+
 	for (int j = 0; j < 3; ++j) {
 		for (int i = 0; i < 8; ++i) {
 			sub2FEFB(1, 0, 1, getRandom(3), 9, 0);
@@ -1114,7 +1115,7 @@ bool WaynesWorldEngine::introPt4_playGuitar() {
 	sub2FEFB(1, 2, 1, 0, 9, -1);
 	sub2FEFB(1, 3, 1, 0, 9, -1);
 	sub2FEFB(1, 4, 1, 0, 9, -1);
-	
+
 	_midi->stopSong();
 
 	if (_escPressed) {

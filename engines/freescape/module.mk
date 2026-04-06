@@ -11,6 +11,7 @@ MODULE_OBJS := \
 	freescape.o \
 	games/castle/castle.o \
 	games/castle/amiga.o \
+	games/castle/c64.o \
 	games/castle/cpc.o \
 	games/castle/dos.o \
 	games/castle/zx.o \
@@ -36,8 +37,12 @@ MODULE_OBJS := \
 	games/eclipse/atari.o \
 	games/eclipse/atari.music.o \
 	games/eclipse/c64.o \
+	games/eclipse/c64.music.o \
+	games/eclipse/ay.music.o \
+	games/eclipse/c64.sfx.o \
 	games/eclipse/dos.o \
 	games/eclipse/eclipse.o \
+	games/eclipse/opl.music.o \
 	games/eclipse/cpc.o \
 	games/eclipse/zx.o \
 	games/palettes.o \

@@ -625,7 +625,25 @@ void AGOSEngine_PN::opn_opcode52() {
 	if (mode == 1) {
 		setWindowImage(mode, varval(), true);
 	} else {
-		setWindowImageEx(mode, varval());
+		int32 image = varval();
+		setWindowImageEx(mode, image);
+
+		// Handle drawing the "time passes" screen via the normal image path. 
+		// without this, the script advances immediately and the screen is replacee 
+		// as soon as it becomes visible.
+		if (mode == 0 && image == 48 && _procnum == 192) {
+			// If a palette update is still pending, make it visible now 
+			// so the "time passes" screen uses the correct colors.
+			if (_paletteFlag == 2) {
+				_paletteFlag = 1;
+			}
+
+			displayScreen();
+			_displayFlag = 0;
+			_system->updateScreen();
+			_pendingWaitCommandDelay = false;
+			_system->delayMillis(2000);
+		}
 	}
 
 	setScriptReturn(true);

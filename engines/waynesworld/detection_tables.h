@@ -24,12 +24,46 @@ namespace WaynesWorld {
 static const ADGameDescription gameDescriptions[] = {
 	{
 		"waynesworld",
-		nullptr,
+		"",
 		AD_ENTRY2s("R00.GXL", "197ae9fb74a79a6dad4e3336f94c7545", 36272,
 				"e00.txt", "78769d60d48aea314ed6be2f725c8c2f", 1293),
 		Common::EN_ANY,
 		Common::kPlatformDOS,
-		ADGF_NO_FLAGS,
+		ADGF_UNSTABLE,
+		GUIO1(GUIO_NOASPECT)
+	},
+
+	// Provided by gabberhead, ticket #16627
+	{
+		"waynesworld",
+		 "",
+		 AD_ENTRY2s("R00.GXL", "197ae9fb74a79a6dad4e3336f94c7545", 36272,
+					"e00.txt", "b5042542d0df2fcd8c8e617ee0900ce8", 1447),
+		 Common::DE_DEU,
+		 Common::kPlatformDOS,
+		 ADGF_UNSTABLE,
+		 GUIO1(GUIO_NOASPECT)
+	},
+
+	{
+		"waynesworld",
+		"Demo",
+		AD_ENTRY2s("R00.GXL", "6a05df806dedb69f1333cb9d81b6821c", 34392,
+					"CAPSPIN.GXL", "b9d2cd46b4ebe49fcf634b221f11f8df", 281089),
+		Common::EN_ANY,
+		Common::kPlatformDOS,
+		ADGF_DEMO | ADGF_UNSTABLE,
+		GUIO1(GUIO_NOASPECT)
+	},
+
+	{
+		"waynesworld",
+		"Selectware Demo",
+		AD_ENTRY2s("R00.GXL", "6a05df806dedb69f1333cb9d81b6821c", 34392,
+					"CAP.GXL", "4823b4ae534716b8ea115ab34b7eac6b", 87864),
+		Common::EN_ANY,
+		Common::kPlatformDOS,
+	 ADGF_DEMO | ADGF_UNSTABLE,
 		GUIO1(GUIO_NOASPECT)
 	},
 

@@ -1,7 +1,18 @@
 Umfangreichere Informationen über die Änderungen des aktuellen Codes findest Du unter:
         https://github.com/scummvm/scummvm/commits/
 
-#### 2026.1.1 (xx.xx.2026)
+#### 2026.3.0 (XX.06.2026)
+ Allgemein:
+   - Klickbare Links in der Benutzeroberfläche werden jetzt durch einen veränderten Cursor hervorgehoben.
+   - Die Fenstergröße wird jetzt korrekt wiederhergestellt, wenn in 3D-Engines von Vollbild zurück zum Fenster-Modus gewechselt wird.
+   - "Leerer" NULL OPL-Treiber für schwächere Systeme implementiert.
+
+ AGOS:
+   - Unterstützung für die von der Amiga- und Macintosh-Versionen von Simon2 verwendeten
+     Sprachdateien hinzugefügt.
+
+
+#### 2026.2.0 "Railmonicon" (28.03.2026)
 
  Neue Spiele:
    - Unterstützung für Necronomicon: The Dawning of Darkness hinzugefügt.
@@ -17,19 +28,35 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
    - Intelligente Suche in der Icon-Ansicht im ScummVM-Launcher korrigiert.
    - Simulation eines MT-32-Displays für Nachrichten hinzugefügt.
    - Übersetzungen können jetzt direkt aus einem lokal vorliegenden Verzeichnis
-     /po geladen werden. Das ist hilfreich für Übersetzer, da hier keine Neuerstellung
+     `/po` geladen werden. Das ist hilfreich für Übersetzer, da hier keine Neuerstellung
      der translations.dat-Datei erforderlich ist.
    - Der Zeit- und Speicher-Bedarf für das Kompilieren der TinyGL-Komponente wurde
      deutlich reduziert.
+   - Ein "Hilfe"-Button wurde zur Benutzeroberfläche hinzugefügt.
+     Ebenso wurde die Geschwindigkeit des Dialogs verbessert.
+   - Unterstützung für entpackte GUI-Themes hinzugefügt.
 
  AGOS:
+   - Musik-Unterstützung für die Atari ST-Versionen von Elvira 1 und 2 hinzugfügt.
    - Verbesserte Unterstützung für die Acorn-Versionen von Simon the Sorcerer.
      Sowohl der originale Mauszeiger als auch das für die Musik verwendete Format
      Desktop Tracker werden jetzt unterstützt.
    - Verbesserte Genauigkeit der Schrift-Darstellung in der DOS-Version von
      Personal Nightmare und der Amiga-Demoversion von Elvira 1.
+   - Unterstützung für die originalen Mauszeiger der Amiga-Version von
+     Personal Nightmare hinzugefügt.
+   - "Warte"-Befehl in Personal Nightmare korrigiert - auf moderenen Systemen
+     wurde der Befehl zu schnell ausgeführt.
+   - Fehlerhafte Farben der Invantar-Icons in den Amiga- und Atari ST-Versionen
+     von Personal Nightmare korrigiert.
    - Fehlende Farb-Darstellung für Simons Sprite in der Acorn-Disketten-Demo
      von Simon the Sorcerer 1 behoben.
+
+ Alcachofa:
+   - Unterstützung für eine frühere CD-Ausgabe der spanischen Version von
+     Mortadelo y Filemón: Una Aventura de Cine - Edición Especial hinzugefügt.
+   - Unterstützung für die russische Version von Mort & Phil: A Movie Adventure
+     (Секретные агенты: Киномонстры атакуют) hinzugefügt.
 
  Bagel:
    - Verhalten der Enter-/Escape-Taste im Raten-Dialog in The Guessing Game korrigiert.
@@ -39,6 +66,25 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
    - Absturz beim Betreten der Brettspiel-Geschäfte korrigiert.
    - Absturz beim Ausblenden des Spinners für den Beginn einer Brettspielrunde korrigiert.
    - Laufende Sprachausgabe wird jetzt korrekt beendet, wenn ein Mini-Spiel verlassen wird.
+   - Der Name der angelegten Spielstände kann jetzt auch mit der Enter-Taste bestätigt werden.
+
+ Freescape:
+   - Sound-Emulation für die CPC-, C64- und Amiga-Versionen von Driller, Dark Side,
+     Total Eclipse und Castle Master hinzugefügt.
+   - Musik-UNterstützung für die Atari ST-Version von Total Eclipse hinzugefügt.
+   - Unterstützung für die Steuerung über die WASD-Tasten hinzugefügt. Shift wird zum Sprinten benutzt.
+   - Verbesserte Touchscreen-Steuerung und alternative Eingabe-Zuordnungen für Mobil-Geräte.
+   - Debugger mit Befehlen für Position und Spielwelt hinzugefügt.
+   - Unterstützung für das Laden komprimierter Daten für die Atari ST-Version von Driller hinzugefügt.
+   - Korrektur einer Darstellungs-FEhler.
+   - Korrektur der Position einiger UI-Elemente und des Spielstands für mehrere Veröffentlichungen.
+
+ Gob:
+   - Anzahl der Übertragung der Bild-Daten optimiert, wodurch Gobliiins und Ween
+     auf schwächeren Plattformen deutlich besser laufen. Andere Gob-Spiele sind
+     ebenfalls positiv davon betroffen.
+   - Flackernder Cursor während einiger Videos in Gob3 und Lost in Time behoben.
+   - Blount ist im Gob3-Gehirnlevel nicht mehr inaktiv.
 
  M4:
    - Musik-Unterstützung in Ripley hinzugefügt.
@@ -67,8 +113,8 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
  SCUMM:
    - Unterstützung für den originalen Titel-Bildschirm in Maniac Mansion hinzugefügt
      (funktioniert nur mit PRG-Dateien).
-   - Unterstützung für die originale Wiedergabe-Datei in der DOS-Version der 
-     nicht-interaktiven Demo von Monkey Island 2 hinzugefügt.
+   - Unterstützung für das Wiedergabe-Feature der nicht-interaktiven Demos von
+     Monkey Island 1, Monkey Island 2 und Fate of Atlantis hinzugefügt.
    - Originale Mauszeiger für die Apple II-Version von Maniac Mansion implementiert.
    - Fehler behoben, der dafür sorgt, dass das Logo in der NES-Version von Maniac Mansion
      im Intro stecken bleibt.
@@ -78,10 +124,25 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
    - Absturz behoben, der auftritt, wenn die Tastatur genutzt wird, während in Rose Tattoo Darts gespielt wird.
    - Darstellung und Logik der Anzeigetafel der Darts-Spiele in Rose Tattoo korrigiert.
 
+ SLUDGE:
+   - Absturz am Anfang von Nathan's Second Chance behoben.
+
+ Sword2:
+   - Fehlerhafte Sample-Rate der Musikwiedergabe in Broken Sword 1 unter
+     PS3, Wii und OSXPPC korrigiert.
+
+ Sword2:
+   - Absturz im Zusammenhang mit einigen DXA-Videos wie etwa im Intro behoben.
+
  Teenagent:
    - Fehler "could not locate language block" beim Start der polnischen und russischen Versionen behoben.
 
  Tinsel:
+   - Zuweisung der Farb-Palette für die PSX-Versionen von Discworld 1 hinzugefügt.
+     Vor dieser Änderung wurde der Bildschirm nicht dunkel, wenn die Augenbinde
+     in Akt 3 verwendet wird.
+   - Durch das Drücken der ESC-Taste kann jetzt in allen Versionen von Discworld 1
+     die Einführung übersprungen werden.
    - Skript-Fehler in Akt 2 in Discworld 1 korrigiert, der dafür sorgt, dass die
      Sprachausgabe der Amazone beendet wird, wenn der Seestern eine Münze wirft.
    - Skript-Fehler in Akt 3 einiger früher Discworld 1-Versionen korrigiert, der
@@ -90,6 +151,8 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
    - Absturz in Akt 4 von Discworld 1 behoben, der auftritt, wenn mit (unsichtbaren)
      City Guards interagiert wird. Der Absturz wird durch einen Skript-Fehler in einigen
      frühen Versionen verursacht.
+   - Fehler in Akt 4 von Discworld 1 behoben, der verursacht, dass der Drache zu früh auf
+     dem Marktplatz erscheint. Der Fehler ist im Code einiger frühen Versionen enthalten.
    - Fehler in Discworld 1 behoben, der verursacht, dass das Fenster für Konversationen in
      L-Space nicht geschlossen wird, wenn mit dem Bar-Mann gesprochen wurde.
 
@@ -97,6 +160,13 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
    - Kampf-System implementiert.
    - Korrektur mehrerer Darstellungsfehler.
    - Maus-Scrolling in Text-Fenstern implementiert.
+   - Der Startbildschirm der Spiele und der entsprechende Start-Sound kann für Spiele,
+     die die entsprechenden Dateien mitbringen, aktiviert werden. Dazu werden neue
+     Menüpunkte zum "About"-Dialog hinzugefügt.
+
+ Atari-Portierung:
+   - m86k-Code-Optimierungen für die SCUMM-Engine und Audio-Abmischung hinzugefügt,
+     um Nutzer-Feedback zu sammeln.
 
  macOS-Portierung:
    - Unterstützung für die neuere Text-to-Speech API von macOS 10.14+ hinzugefügt.
@@ -104,6 +174,8 @@ Umfangreichere Informationen über die Änderungen des aktuellen Codes findest D
 
  iOS-Portierung:
    - Unterstützung für Text-to-Speech hinzugefügt.
+   - Das CoreMIDI-Feature für die macOS-version wurde auf iOS/tvOS portiert, sodass
+     jetzt auch externe MIDI-Geräte für die Audio-Ausgabe genutzt werden können.
 
 
 #### 2026.1.0 "Like a version" (31.01.2026)

@@ -19,8 +19,8 @@
  *
  */
 
-#ifndef WAYNESWORLD_WAYNESWORLD_H
-#define WAYNESWORLD_WAYNESWORLD_H
+#ifndef WAYNESWORLD_H
+#define WAYNESWORLD_H
 
 #include "common/events.h"
 #include "common/file.h"
@@ -42,7 +42,7 @@ namespace WaynesWorld {
 class GxlArchive;
 
 enum {
-	GF_GUILANGSWITCH =    (1 << 0) // If GUI language switch is required for menus
+	GF_GUILANGSWITCH =	(1 << 0) // If GUI language switch is required for menus
 };
 
 class Screen;
@@ -60,11 +60,11 @@ struct SavegameHeader {
 };
 
 struct RoomObject {
-    int roomNumber;
-    const char *name;
-    int x1, y1, x2, y2;
-    int direction;
-    int walkX, walkY;
+	int roomNumber;
+	const char *name;
+	int x1, y1, x2, y2;
+	int direction;
+	int walkX, walkY;
 };
 
 struct StaticRoomObjectMapEntry {
@@ -77,7 +77,7 @@ struct StaticRoomObject {
 };
 
 struct WalkPoint {
-    int x, y, direction;
+	int x, y, direction;
 };
 
 struct AnimationTimer {
@@ -141,9 +141,6 @@ public:
 private:
 	Graphics::PixelFormat _pixelFormat;
 
-#ifdef USE_TRANSLATION
-	Common::String _oldGUILanguage;
-#endif
 	void wwEffect(int arg0, int arg1, bool flag);
 	void cleanPt3();
 
@@ -170,7 +167,7 @@ private:
 	int _startOagPos = 0;
 	int _startOaoPos = 0;
 	int _loadSaveSlot = -1;
-	
+
 	void sub3009A(int textId);
 	void sub2FEFB(int arg_refreshBackgFl, int arg_wBodyIndex, int arg_gBodyIndex, int arg_wHead1Index, int arg_gHead1Index, int arg_TextId);
 
@@ -192,8 +189,8 @@ private:
 	GxlArchive *_oanGxl = nullptr;
 
 public:
-	Common::RandomSource *_random;
-	GameLogic *_logic;
+	Common::RandomSource *_random = nullptr;
+	GameLogic *_logic = nullptr;
 
 	void updateEvents();
 
@@ -215,8 +212,8 @@ public:
 	GxlArchive *_r10Gxl = nullptr;
 
 	// Sound and Music
-	SoundManager *_sound;
-	MusicManager *_midi;
+	SoundManager *_sound = nullptr;
+	MusicManager *_midi = nullptr;
 
 	// Room
 	Common::String _roomName;
@@ -234,18 +231,18 @@ public:
 
 	// Input
 	int _mouseX = 0, _mouseY = 0;
-	int _mouseClickY, _mouseClickX;
+	int _mouseClickY = 0, _mouseClickX = 0;
 	Common::Rect _mouseZone = {0, 0, 319, 199};
-	uint _mouseClickButtons;
-	Common::KeyCode _keyCode;
+	uint _mouseClickButtons = 0;
+	Common::KeyCode _keyCode = Common::KEYCODE_INVALID;
 
 	// Text
 	Common::String _currentText;
-	int _currentTextX, _currentTextY;
-	bool _isTextVisible;
+	int _currentTextX = 0, _currentTextY = 0;
+	bool _isTextVisible = false;
 
 	// Audio
-	int _musicIndex;
+	int _musicIndex = 0;
 
 	// Game
 	int _gameState; // TODO Use enum
@@ -300,6 +297,9 @@ public:
 	int _currentMapItemIndex;
 	int _gameMapDestinationRoomNum;
 	bool _gameMapFlag;
+	bool _gameMapHasPaletteHandler = false;
+	int _gameMapCtr = 0;
+	uint32 _gameMapLastTicks = 0;
 
 	void runIntro();
 
@@ -322,6 +322,8 @@ public:
 
 	void paletteFadeIn(int index, int count, int stepsSize);
 	void paletteFadeOut(int index, int count, int stepsSize);
+	void paletteFadeColor(int index, byte r, byte g, byte b, int steps);
+	void handleMapPalette();
 
 	// Image drawing
 	void drawImageToSurfaceIntern(GxlArchive *lib, const char *filename, WWSurface *destSurface, int x, int y, bool transparent);
@@ -400,6 +402,7 @@ public:
 	void setMouseBounds(int x1, int x2, int y1, int y2);
 	// Room
 	void openRoomLibrary(int roomNum);
+	void openAlternateRoomLibrary(const char *name);
 	void loadRoomBackground();
 	void changeRoom(int roomNum);
 	void refreshRoomBackground(int roomNum);
@@ -472,6 +475,9 @@ public:
 	void gameMapHandleMouseClick();
 	void gameMapSelectItem(const char *prefix, int animX, int animY);
 
+	void gameMapPaletteHandlerStart();
+	void gameMapPaletteHandlerStop();
+
 	// Savegame API
 
 	enum kReadSaveHeaderError {
@@ -499,4 +505,4 @@ public:
 
 } // End of namespace WaynesWorld
 
-#endif // WAYNESWORLD_WAYNESWORLD_H
+#endif // WAYNESWORLD_H

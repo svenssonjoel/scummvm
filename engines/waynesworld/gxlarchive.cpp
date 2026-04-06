@@ -48,10 +48,10 @@ GxlArchive::GxlArchive(const Common::String name) : _gxlFile(new Common::File())
 	// signature (2) + copyright (50) + version (2) + garbage(40)
 	_gxlFile->seek(94);
 	const uint16 count = _gxlFile->readUint16LE();
-	
+
 	GxlHeader header;
 	_gxlFile->seek(128);
-	
+
 	for (uint i = 0; i < count; i++) {
 		_gxlFile->readByte(); // Packing Type
 		char baseName[9] = {0};
@@ -62,16 +62,16 @@ GxlArchive::GxlArchive(const Common::String name) : _gxlFile(new Common::File())
 		fullName.trim();
 		fullName += Common::String(extension);
 		fullName.trim();
-		
+
 		strncpy(header.filename, fullName.c_str(), 12);
 		header.filename[12] = 0;
-		
+
 		header.offset = _gxlFile->readUint32LE();
 		header.size = _gxlFile->readUint32LE();
 
 		_gxlFile->readUint32LE(); // date and time of the file
 
-		// warning("file: %s offset: %d  size: %d", header.filename, header.offset, header.size);
+		// warning("file: %s offset: %d size: %d", header.filename, header.offset, header.size);
 
 		_headers[header.filename].reset(new GxlHeader(header));
 	}
@@ -135,22 +135,16 @@ Image::PCXDecoder *GxlArchive::loadImage(const char *filename) {
 		error("loadImage() Could not find '%s'", searchName.c_str());
 
 	Image::PCXDecoder *pcx = new Image::PCXDecoder();
-	if (pcx)
-	{
+	if (pcx) {
 		Common::SeekableReadStream *pcxStr = createReadStreamForMember(pathName);
-		if (pcxStr)
-		{
+		if (pcxStr) {
 			if (!pcx->loadStream(*pcxStr))
 				error("loadImage() Could not process '%s'", searchName.c_str());
-		}
-		else
-		{
+		} else {
 			warning("loadImage() failed to create read stream for \"%s\"", searchName.c_str());
 		}
 		delete pcxStr;
-	}
-	else
-	{
+	} else {
 		error("loadImage() failed to allocate PCX decoder!");
 	}
 
@@ -159,13 +153,12 @@ Image::PCXDecoder *GxlArchive::loadImage(const char *filename) {
 
 WWSurface *GxlArchive::loadSurfaceIntern(const char *filename) {
 	Image::PCXDecoder *imageDecoder = loadImage(filename);
-	if (imageDecoder == nullptr)
-	{
+	if (imageDecoder == nullptr) {
 		warning("%s() failed to load \"%s\"", __func__, filename);
 		return nullptr;
 	}
-	if (imageDecoder->getSurface() == nullptr)
-	{
+
+	if (imageDecoder->getSurface() == nullptr) {
 		warning("%s() failed to get surface data for \"%s\"", __func__, filename);
 		return nullptr;
 	}

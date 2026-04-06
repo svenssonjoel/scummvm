@@ -32,10 +32,11 @@ static const PlainGameDescriptor waynesworldGames[] = {
 #include "waynesworld/detection.h"
 
 static const DebugChannelDef debugFlagList[] = {
-	{WaynesWorld::kDebugScripts, "scripts", "Script debug level"},
-	{WaynesWorld::kDebugMessages, "messages", "Messages debug level"},
-	{WaynesWorld::kDebugCore, "core", "Core debug level"},
-	DEBUG_CHANNEL_END};
+	{ WaynesWorld::kDebugLogic, "logic", "Logic debug level" },
+	{ WaynesWorld::kDebugMessages, "messages", "Messages debug level" },
+	{ WaynesWorld::kDebugCore, "core", "Core debug level" },
+	DEBUG_CHANNEL_END
+};
 
 static const char *const DIRECTORY_GLOBS[] = { "vnm", "m01", nullptr };
 
@@ -54,7 +55,7 @@ public:
 	}
 
 	const char *getEngineName() const override {
-		return "WaynesWorld";
+		return "Wayne's World";
 	}
 
 	const char *getOriginalCopyright() const override {

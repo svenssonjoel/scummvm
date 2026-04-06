@@ -37,6 +37,8 @@ DarkEngine::DarkEngine(OSystem *syst, const ADGameDescription *gd) : FreescapeEn
 	_playerC64Sfx = nullptr;
 	_playerC64Music = nullptr;
 	_c64UseSFX = false;
+	_c64CompassInitialized = false;
+	_c64CompassPosition = 0;
 
 	// These sounds can be overriden by the class of each platform
 	_soundIndexShoot = 1;
@@ -90,11 +92,38 @@ DarkEngine::DarkEngine(OSystem *syst, const ADGameDescription *gd) : FreescapeEn
 	_initialShield = 15;
 
 	_jetFuelSeconds = _initialEnergy * 6;
+	_amigaCompassPitchMarker = nullptr;
+	_amigaCompassYawPhaseInitialized = false;
+	_amigaCompassYawPhase = 0;
+	_amigaCompassYawLastUpdateTick = -1;
+	_jetpackIndicatorStateInitialized = false;
+	_jetpackIndicatorLastFlyMode = false;
+	_jetpackIndicatorTransitionFrame = 0;
+	_jetpackIndicatorTransitionDirection = 0;
+	_jetpackIndicatorNextFrameMillis = 0;
+	_cpcActionIndicatorUntilMillis = 0;
 }
 
 DarkEngine::~DarkEngine() {
 	delete _playerC64Sfx;
 	delete _playerC64Music;
+
+	for (auto &indicator : _cpcIndicators) {
+		indicator->free();
+		delete indicator;
+	}
+	for (auto &indicator : _cpcJetpackIndicators) {
+		indicator->free();
+		delete indicator;
+	}
+	for (auto &indicator : _cpcActionIndicators) {
+		indicator->free();
+		delete indicator;
+	}
+	for (auto &frame : _c64ModeFrames) {
+		frame->free();
+		delete frame;
+	}
 }
 
 void DarkEngine::addECDs(Area *area) {
@@ -302,6 +331,11 @@ void DarkEngine::initGameState() {
 
 	_angleRotationIndex = 0;
 	_playerStepIndex = 6;
+	_amigaCompassYawPhaseInitialized = false;
+	_amigaCompassYawPhase = 0;
+	_amigaCompassYawLastUpdateTick = -1;
+	_jetpackIndicatorStateInitialized = false;
+	_jetpackIndicatorTransitionDirection = 0;
 
 	// Start background music
 	if (isAmiga() && !_musicData.empty()) {
@@ -525,6 +559,8 @@ bool DarkEngine::checkIfGameEnded() {
 		int index = _gameStateVars[kVariableDarkECD] - 1;
 		bool destroyed = tryDestroyECD(index);
 
+		waitInLoop(10);
+
 		if (destroyed) {
 			_gameStateVars[kVariableActiveECDs] -= 4;
 			_gameStateVars[k8bitVariableScore] += 52750;
@@ -543,6 +579,18 @@ bool DarkEngine::checkIfGameEnded() {
 		}
 	}
 	return false;
+}
+
+bool DarkEngine::triggerWinCondition() {
+	_gameStateVars[kVariableActiveECDs] = 0;
+	_gameStateVars[kVariableDarkECD] = 0;
+	_gameStateVars[kVariableDarkEnding] = kDarkEndingECDsDestroyed;
+	_ticksFromEnd = 0;
+	_endGameDelayTicks = 0;
+	_endGameKeyPressed = false;
+	_endGamePlayerEndArea = false;
+	_gameStateControl = kFreescapeGameStateEnd;
+	return true;
 }
 
 void DarkEngine::endGame() {
@@ -684,13 +732,21 @@ void DarkEngine::gotoArea(uint16 areaID, int entranceID) {
 	_gfx->setColorRemaps(&_currentArea->_colorRemaps);
 
 	swapPalette(areaID);
-	_currentArea->_skyColor = isCPC() ? 1 : 0;
-	_currentArea->_usualBackgroundColor = isCPC() ? 1 : 0;
+	if (isCPC()) {
+		// The CPC loader still uses the generic area header parser, but the
+		// original Driller code does not use the first header byte as split
+		// sky/ground colors. Keep the real per-area background ink and reuse it
+		// for the viewport fill instead of interpreting the flag nibble as a sky.
+		_currentArea->_skyColor = _currentArea->_usualBackgroundColor;	
+	}
 
 	resetInput();
 }
 
 void DarkEngine::pressedKey(const int keycode) {
+	if (isCPC())
+		_cpcActionIndicatorUntilMillis = g_system->getMillis() + 150;
+
 	// This code is duplicated in the DrillerEngine::pressedKey (except for the J case)
 	if (keycode == kActionIncreaseStepSize) {
 		increaseStepSize();
@@ -863,6 +919,11 @@ void DarkEngine::drawHorizontalCompass(int x, int y, float angle, uint32 front, 
 	uint32 transparent = _gfx->_texturePixelFormat.ARGBToColor(0x00, 0x00, 0x00, 0x00);
 
 	uint32 green = _gfx->_texturePixelFormat.ARGBToColor(0xff, 0x00, 0xaa, 0x00);
+	if (isCPC()) {
+		uint8 r, g, b;
+		_gfx->selectColorFromFourColorPalette(3, r, g, b);
+		green = _gfx->_texturePixelFormat.ARGBToColor(0xFF, r, g, b);
+	}
 
 	int delta = (angle - 180) / 5.5;
 	Common::String compass = "-N-E-S-W-N-E-S";
@@ -882,7 +943,66 @@ void DarkEngine::drawHorizontalCompass(int x, int y, float angle, uint32 front, 
 	surface->fillRect(Common::Rect(x + 80, y - 5, 320, y + 10), transparent);
 }
 
+void DarkEngine::drawCPCSprite(Graphics::Surface *surface, const Graphics::ManagedSurface *indicator, int xPosition, int yPosition) {
+	uint32 colors[4];
+	for (uint8 i = 0; i < 4; i++) {
+		uint8 r, g, b;
+		_gfx->selectColorFromFourColorPalette(i, r, g, b);
+		colors[i] = _gfx->_texturePixelFormat.ARGBToColor(0xFF, r, g, b);
+	}
+
+	for (int y = 0; y < indicator->h; y++) {
+		for (int x = 0; x < indicator->w; x++)
+			surface->setPixel(xPosition + x, yPosition + y, colors[(byte)indicator->getPixel(x, y)]);
+	}
+}
+
+void DarkEngine::drawCPCIndicator(Graphics::Surface *surface, int xPosition, int yPosition) {
+	if (_cpcIndicators.empty())
+		return;
+
+	const Graphics::ManagedSurface *indicator = nullptr;
+	if (_hasFallen)
+		indicator = _cpcIndicators[0];
+	else if (_flyMode)
+		indicator = _cpcIndicators[3];
+	else if (_playerHeightNumber == 0)
+		indicator = _cpcIndicators[1];
+	else
+		indicator = _cpcIndicators[2];
+
+	drawCPCSprite(surface, indicator, xPosition, yPosition);
+
+	if (_flyMode && _cpcJetpackIndicators.size() > 1) {
+		uint32 frame = (g_system->getMillis() / 40) & 1;
+		drawCPCSprite(surface, _cpcJetpackIndicators[frame], xPosition + 4, yPosition + 12);
+	}
+
+	bool showActionIndicator = _moveForward || _moveBackward || _moveUp || _moveDown ||
+		_shootingFrames > 0 || g_system->getMillis() < _cpcActionIndicatorUntilMillis;
+	if (showActionIndicator && _cpcActionIndicators.size() > 1) {
+		uint32 frame = (g_system->getMillis() / 40) & 1;
+		drawCPCSprite(surface, _cpcActionIndicators[frame], 256, 169);
+	}
+}
+
 void DarkEngine::drawIndicator(Graphics::Surface *surface, int xPosition, int yPosition) {
+	if (isCPC() && !_cpcIndicators.empty()) {
+		drawCPCIndicator(surface, xPosition, yPosition);
+		return;
+	}
+
+	if (isC64() && _indicators.size() >= 4) {
+		if (_hasFallen)
+			return;
+
+		const Graphics::Surface *indicator = _indicators[1];
+		if (_flyMode)
+			indicator = _indicators[2 + ((g_system->getMillis() / 40) & 1)];
+		surface->copyRectToSurfaceWithKey(*indicator, xPosition, yPosition, Common::Rect(indicator->w, indicator->h), 0);
+		return;
+	}
+
 	if (_indicators.size() == 0)
 		return;
 	if (_hasFallen)
@@ -1059,6 +1179,11 @@ Common::Error DarkEngine::loadGameStreamExtended(Common::SeekableReadStream *str
 		uint16 key = stream->readUint16LE();
 		_exploredAreas[key] = stream->readUint32LE();
 	}
+	_amigaCompassYawPhaseInitialized = false;
+	_amigaCompassYawPhase = 0;
+	_amigaCompassYawLastUpdateTick = -1;
+	_jetpackIndicatorStateInitialized = false;
+	_jetpackIndicatorTransitionDirection = 0;
 	return Common::kNoError;
 }
 

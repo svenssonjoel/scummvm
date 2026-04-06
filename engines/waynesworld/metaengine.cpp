@@ -31,15 +31,16 @@
 
 namespace WaynesWorld {
 static const ADExtraGuiOptionsMap optionsList[] = {
-	{GAMEOPTION_ORIGINAL_SAVELOAD,
-	 {
-	 		_s("Use original save/load screens"),
+	{
+		GAMEOPTION_ORIGINAL_SAVELOAD,
+		{
+			_s("Use original save/load screens"),
 			_s("Use the original save/load screens instead of the ScummVM ones"),
-	 	"originalsaveload",
-	 	false,
-	 	0,
-	 	0
-			}
+			"originalsaveload",
+			false,
+			0,
+			0
+		}
 	},
 
 	AD_EXTRA_GUI_OPTIONS_TERMINATOR
@@ -60,6 +61,7 @@ public:
 	bool hasFeature(MetaEngineFeature f) const override;
 	SaveStateList listSaves(const char *target) const override;
 	SaveStateDescriptor querySaveMetaInfos(const char *target, int slot) const override;
+	int getMaximumSaveSlot() const override { return 99; }
 };
 
 bool WaynesWorldMetaEngine::hasFeature(MetaEngineFeature f) const {
@@ -107,7 +109,7 @@ SaveStateList WaynesWorldMetaEngine::listSaves(const char *target) const {
 							saveList.push_back(SaveStateDescriptor(this, slotNum, header.saveName));
 						}
 					} else {
-						// Unexpected savegame format? 
+						// Unexpected savegame format?
 					}
 				}
 				delete file;

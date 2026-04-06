@@ -217,6 +217,7 @@ OSystem_Atari::OSystem_Atari() {
 #endif
 
 	Supexec(atari_200hz_init);
+	_startTime = counter_200hz;
 	_timerInitialized = true;
 
 	// protect against sudden exit()
@@ -338,8 +339,6 @@ void OSystem_Atari::initBackend() {
 	// Setup and start mixer
 	_mixerManager->init();
 
-	_startTime = counter_200hz;
-
 	BaseBackend::initBackend();
 }
 
@@ -406,12 +405,15 @@ void OSystem_Atari::quit() {
 
 	if (!s_dtor_already_called)
 		destroy();
+
+	exit(0);
 }
 
 void OSystem_Atari::fatalError() {
 	atari_debug("OSystem_Atari::fatalError()");
 
-	quit();
+	if (!s_dtor_already_called)
+		destroy();
 
 	// let exit_restore() and critical_restore() handle the recovery
 	exit(1);

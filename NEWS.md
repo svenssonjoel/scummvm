@@ -1,7 +1,18 @@
 For a more comprehensive changelog of the latest experimental code, see:
         https://github.com/scummvm/scummvm/commits/
 
-#### 2026.1.1 (2026-XX-XX)
+#### 2026.3.0 (2026-06-XX)
+ General:
+   - Highlight clickable links in the GUI with a cursor change.
+   - Fixed window size when switching out of fullscreen mode on 3D engines.
+   - Implemented NULL OPL driver for lower-base systems.
+
+ AGOS:
+   - Added support for language files used by Amiga and Macintosh
+     versions of Simon2.
+
+
+#### 2026.2.0 "Railmonicon" (2026-03-28)
 
  New games:
    - Added support for Necronomicon: The Dawning of Darkness.
@@ -16,7 +27,7 @@ For a more comprehensive changelog of the latest experimental code, see:
    - Updated ImGui library to 1.92.6-docker.
    - Fixed Smart Search in the Icons Grid view in the launcher.
    - Simulate MT-32 display for on-screen messages.
-   - Added possibility to load GUI translations from the local po/
+   - Added possibility to load GUI translations from the local `po/`
      directory. Useful for translators since it does not require
      regeneration of the translations.dat file.
    - Significantly reduced compilation time and memory usage when
@@ -26,23 +37,55 @@ For a more comprehensive changelog of the latest experimental code, see:
    - Added possibility to run unpacked GUI themes.
 
  AGOS:
+   - Added music support for the Atari ST releases of Elvira 1 and 2.
    - Improved support of the Acorn releases of Simon the Sorcerer.
      Original cursor is now implemented, along with support of the
      Desktop Tracker format used for music.
    - Improved font rendering accuracy for DOS Personal Nightmare and
      the Amiga Elvira 1 demo.
+   - Implemented original cursors for the Amiga release of Personal
+     Nightmare.
+   - Fixed Personal Nightmare 'Wait' command being far too quick on
+     modern systems.
+   - Fixed inventory icon colors in the Amiga and Atari ST releases of
+     Personal Nightmare.
    - Fixed Simon's sprite having no color in the Acorn floppy demo
      of Simon the Sorcerer 1.
 
+ Alcachofa:
+   - Added support for earlier Spanish CD variant of
+     Mortadelo y Filemón: Una Aventura de Cine - Edición Especial.
+   - Added support for Russian variant of Mort & Phil: A Movie Adventure
+     (Секретные агенты: Киномонстры атакуют).
+
  Bagel:
-   - Fix Enter/Escape keys in The Guessing Game guess dialog.
-   - Fix using Enter key to close info dialogs.
-   - Fix shell animations in Mankala minigame.
+   - Fixed Enter/Escape keys in The Guessing Game guess dialog.
+   - Fixed using Enter key to close info dialogs.
+   - Fixed shell animations in Mankala minigame.
    - Fixed incorrect evolution logic in Game of Life.
    - Hopeful fix for occasional crash entering boardgame stores.
-   - Fix crash when hiding boardgame turn start spinner.
-   - Fix Poker minigame bet icons rendering over game over dialog.
-   - Stop in-progress speech when closing a minigame exit dialog.
+   - Fixed crash when hiding boardgame turn start spinner.
+   - Fixed Poker minigame bet icons rendering over game over dialog.
+   - Made in-progress speech stop when closing a minigame exit dialog.
+   - Fixed using Enter key after typing savegame name to save it.
+
+ Freescape:
+   - Added sound emulation for Driller, Dark Side, Total Eclipse and
+     Castle Master on CPC, C64 and Amiga.
+   - Added music support for Total Eclipse on Atari ST.
+   - Added WASD movement option with shift for run.
+   - Improved touchscreen controls and alternative input mappings for
+     mobile devices.
+   - Added a debugger with position and area commands.
+   - Implemented compressed data loading for Driller on Atari ST.
+   - Fixed rendering artifacts and culling issues.
+   - Fixed various UI element positions and score rendering across
+     multiple releases.
+
+ Gob:
+   - Optimized the number of screen blits, making Gobliiins and Ween
+     noticeably more responsive on weaker platforms. Other Gob games
+     are also positively affected.
 
  M4:
    - Added music support in Ripley.
@@ -70,8 +113,8 @@ For a more comprehensive changelog of the latest experimental code, see:
  SCUMM:
    - Added support for original splash screens in Maniac Mansion NES (when
      playing from PRG files).
-   - Added support for original playback file in Monkey Island 2 Non-Interactive
-     DOS demo.
+   - Added support for the playback feature of the non-interactive demos
+     of Monkey Island 1, Monkey Island 2, and Fate of Atlantis.
    - Implemented original cursor for the Apple II release of Maniac Mansion.
    - Fixed Maniac Mansion NES logo scroll getting stuck during the intro.
 
@@ -83,14 +126,23 @@ For a more comprehensive changelog of the latest experimental code, see:
  SLUDGE:
    - Fixed crash at start of Nathan's Second Chance game.
 
+ Sword1:
+   - Fixed music from the original Broken Sword 1 release being played at a
+     wrong sample rate on PS3, Wii and OSXPPC.
+
  Sword2:
-   - Fixed crash with some DXA movies, particularly noticeable in intro.dxa.
+   - Fixed crash with some DXA movies, such as the ones played in the intro.
 
  Teenagent:
    - Fixed 'could not locate language block' error when starting the Polish and
      Russian versions.
 
  Tinsel:
+   - Implemented proper palette mapping for the PSX versions of Discworld 1.
+     Before this, the screen wasn't turning black when using the blindfold
+     in Act 3.
+   - Made it possible to skip the entire introduction (by pressing Escape) in
+     all Discworld 1 versions.
    - Fixed Amazon speech accidentally stopped by the Starfish flicking a coin,
      in Act 2 of all Discworld 1 releases having this original script bug.
    - Fixed "calculate odds" button not always erased from the screen when asking
@@ -109,6 +161,10 @@ For a more comprehensive changelog of the latest experimental code, see:
    - Implemented mouse scrolling of text window.
    - Implemented way to show startup screen and play startup sound for games
      what have those files. There will be new items in the About menu.
+
+ Atari port:
+   - Included out-of-tree m68k code optimizations for the SCUMM engine and
+     audio mixing to gather user feedback.
 
  macOS port:
    - Added support for the newer Text-to-Speech API of macOS 10.14+.
